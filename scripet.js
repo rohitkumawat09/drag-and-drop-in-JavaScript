@@ -1,22 +1,4 @@
-// const buttons = document.querySelectorAll("button");
 
-// buttons.forEach(button => button.addEventListener("click", addTask));
-
-
-// function addTask(e) {
-//     const btn = e.target;
-//     const input = btn.parentElement.previousElementSibling;
-
-//     const taskText = input.value.trim();
-//     const newTask = document.createElement("div");
-//     const text = document.createElement("p");
-//     const date = document.createElement("span");
-//     text.textContent = taskText;
-//     date.textContent = new Date().toLocaleString();
-//     newTask.append(text, date);
-//     btn.parentElement.previousElementSibling.previousElementSibling.append(newTask)
-//     input.value = "";
-// }
 
 document.querySelectorAll("button").forEach(button => {
     button.addEventListener("click", () => {
