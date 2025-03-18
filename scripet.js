@@ -1,3 +1,5 @@
+const modifyCountArr = [];
+
 function counting(button){
 const one=button.closest(".one")
 one.querySelector(".count").innerHTML=Number(one.querySelector(".count").innerHTML)+1
@@ -32,6 +34,9 @@ document.querySelectorAll("button").forEach(button => {
 
         task.addEventListener("dragstart", e => {
             e.dataTransfer.setData("html/text", task.id);
+            modifyCountArr.length=0
+            const one= e.target.closest(".one")
+            modifyCountArr.push(one.querySelector(".count"))
         });
 
         contentDiv.appendChild(task);
@@ -39,7 +44,7 @@ document.querySelectorAll("button").forEach(button => {
         input.value = "";
         
         counting(button)
-        //  const count = container.querySelectorAll(".task").length;
+        modifyCounts(null, one.querySelector(".count"));
 
     });
     
@@ -53,8 +58,11 @@ document.querySelectorAll(".content").forEach(contentDiv => {
         
         const taskId = e.dataTransfer.getData("html/text");
         const taskElement = document.getElementById(taskId);
-
         e.target.appendChild(taskElement,);
+
+        const one=taskElement.closest(".one")
+        modifyCountArr.push(one.querySelector(".count"))
+        modifyCounts(...modifyCountArr)
     });
    
     
@@ -63,7 +71,15 @@ document.querySelectorAll(".content").forEach(contentDiv => {
    
 
 
-
+function modifyCounts(countToDecrement = null, countToIncrement = null) {
+  if (countToIncrement) {
+    countToIncrement.innerText = Number(countToIncrement.innerText) + 1;
+  }
+  if (countToDecrement) {
+    countToDecrement.innerText = Number(countToDecrement.innerText) - 1;
+  }
+  modifyCountArr.length = 0;
+}
 
 
 
