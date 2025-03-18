@@ -29,9 +29,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-div#one,
-div#two,
-div#three {
+.one {
     border: 2px solid #4a4a6a;
     background-color: #dcd6f7;
     width: 300px;
@@ -88,7 +86,11 @@ button:hover {
 .content {
     height: 70%;
 }
-
+.content .task {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
 
 @media (max-width: 768px) {
     .head {

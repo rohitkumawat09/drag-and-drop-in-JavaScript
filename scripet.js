@@ -1,12 +1,21 @@
+function counting(button){
+const one=button.closest(".one")
+one.querySelector(".count").innerHTML=Number(one.querySelector(".count").innerHTML)+1
+
+}
+
 
 
 document.querySelectorAll("button").forEach(button => {
     button.addEventListener("click", () => {
         const input = button.parentElement.previousElementSibling;
         const contentDiv = input.previousElementSibling;
-
-        const taskText = input.value.trim();
-
+        const taskText = input.value;
+        if (taskText === "") {
+            alert("Please add a task.");
+            return;
+        }
+        
         const task = document.createElement("div");
         task.classList.add("task");
         task.draggable = true;
@@ -22,13 +31,18 @@ document.querySelectorAll("button").forEach(button => {
         task.appendChild(date);
 
         task.addEventListener("dragstart", e => {
-            e.dataTransfer.setData("text/plain", task.id);
+            e.dataTransfer.setData("html/text", task.id);
         });
 
         contentDiv.appendChild(task);
 
         input.value = "";
+        
+        counting(button)
+        //  const count = container.querySelectorAll(".task").length;
+
     });
+    
 });
 
 document.querySelectorAll(".content").forEach(contentDiv => {
@@ -36,9 +50,20 @@ document.querySelectorAll(".content").forEach(contentDiv => {
 
     contentDiv.addEventListener("drop", e => {
         e.preventDefault();
-        const taskId = e.dataTransfer.getData("text/plain");
+        
+        const taskId = e.dataTransfer.getData("html/text");
         const taskElement = document.getElementById(taskId);
 
-        e.target.appendChild(taskElement);
+        e.target.appendChild(taskElement,);
     });
+   
+    
 });
+ 
+   
+
+
+
+
+
+
